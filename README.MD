@@ -9,7 +9,7 @@ Está compuesta por cuatro proyectos:
 
 Esta es la estructura de folder de dicho proyeto
 ```sh
-![](Images\\Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.001.png)
+![](Images\Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.001.png)
 ```
 
 - **Cotizacion.Library**
