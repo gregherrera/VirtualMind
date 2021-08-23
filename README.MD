@@ -16,10 +16,9 @@ Esta es la estructura de folder de dicho proyeto
   - Contiene toda la lógica de negocio haciendo uso de las entidades, contexto de base de datos y repositorio vía Entity Framework Core para suplir los datos al Web Api. La data se almacena en Sql Server.
 
 Esta la estructura de folder de dicho proyecto	
-
-|![](Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.002.png)|
-| :- |
-
+```sh
+![](Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.002.png)
+```
 - **Cotizacion.Test**
   - Contiene las pruebas unitarias para probar la funcionalidad tanto del proyecto Web Api como de la libraría de clase que suple los datos desde la base de datos. Este proyecto realiza las pruebas invocando los controladores del Web Api apoyandose el uno varios repositorios para obtener los datos.
   - Para realizar las prueba utilizo una base de dato en memoria (InMemory database) haciendo uso del contexto y las entidades del proyecto Cotizacion.Library.
