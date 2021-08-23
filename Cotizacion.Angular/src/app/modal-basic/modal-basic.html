@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Money Exchange Window</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #purchaseForm="ngForm">
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="user">User Id</label>
+                <input type="number" class="form-control" id="user" required placeholder="type user Id"
+                    [(ngModel)]="compra.idusuario" name="user" #user="ngModel" />
+
+                <div [hidden]="user.valid || user.pristine" class="alert alert-danger">
+                    User Id is required
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="coin">Coin</label>
+                <select class="form-select" id="coin" required [(ngModel)]="compra.idmoneda" name="coin"
+                    #coin="ngModel">
+                    <option *ngFor="let coin of lista; let i = index" [ngValue]="coin.id">
+                        {{coin.id}}
+                    </option>
+                </select>
+
+                <div [hidden]="coin.valid || coin.pristine" class="alert alert-danger">
+                    Coin is required
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="quantity">Amount</label>
+                <input type="number" class="form-control" id="quantity" required [(ngModel)]="compra.monto"
+                    name="quantity" #quantity="ngModel" />
+
+                <div [hidden]="quantity.valid || quantity.pristine" class="alert alert-danger">
+                    Amount is required
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary w-100" [disabled]="!purchaseForm.form.valid"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-sm btn-primary" (click)="open(content)">Money Exchange</button>

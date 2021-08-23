@@ -1,0 +1,26 @@
+<h1 id="tableLabel">Exchange Rates list</h1>
+
+<p *ngIf="lista.length > 0">
+  <button class="btn btn-sm btn-primary" (click)="getCotizaciones()">Refresh</button>
+</p>
+
+<div *ngIf="cargar" class="d-flex justify-content-center">
+  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="lista.length > 0">
+  <thead>
+    <tr>
+      <th>Coin Id</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let elemento of lista">
+      <td>{{ elemento.moneda }}</td>
+      <td>{{ elemento.valor }}</td>
+    </tr>
+  </tbody>
+</table>
