@@ -6,11 +6,12 @@ Está compuesta por cuatro proyectos:
 
 - #### Cotización. Api
   - Este es el Web Api y contiene todos los métodos para suplir las peticiones que se realizan desde el front end a traves de los verbos HTTP GET y HTTP POST, para ello interactuando con la base de datos.
-
-Esta es la estructura de folder de dicho proyeto
 ```sh
-![](Images/Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.001.png)
+Esta es la estructura de folder de dicho proyeto
 ```
+
+![](Images/Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.001.png)
+
 
 - **Cotizacion.Library**
   - Contiene toda la lógica de negocio haciendo uso de las entidades, contexto de base de datos y repositorio vía Entity Framework Core para suplir los datos al Web Api. La data se almacena en Sql Server.
