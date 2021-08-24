@@ -6,9 +6,8 @@ Está compuesta por cuatro proyectos:
 
 - #### Cotización. Api
   - Este es el Web Api y contiene todos los métodos para suplir las peticiones que se realizan desde el front end a traves de los verbos HTTP GET y HTTP POST, para ello interactuando con la base de datos.
-```sh
+
 Esta es la estructura de folder de dicho proyeto
-```
 
 ![](Images/Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.001.png)
 
@@ -18,8 +17,7 @@ Esta es la estructura de folder de dicho proyeto
 
 Esta la estructura de folder de dicho proyecto	
 
-|![](Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.002.png)|
-| :- |
+![](Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.002.png)
 
 - **Cotizacion.Test**
   - Contiene las pruebas unitarias para probar la funcionalidad tanto del proyecto Web Api como de la libraría de clase que suple los datos desde la base de datos. Este proyecto realiza las pruebas invocando los controladores del Web Api apoyandose el uno varios repositorios para obtener los datos.
