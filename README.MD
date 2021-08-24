@@ -1,4 +1,4 @@
-﻿## A continuación detallo brevemente el trabajao realizado.
+## A continuación detallo brevemente el trabajao realizado.
 
 La solución lleva por nombre **“Cotizacion”.**
 
@@ -18,7 +18,6 @@ Esta es la estructura de folder de dicho proyeto
 Esta la estructura de folder de dicho proyecto	
 
 ![](Images/Aspose.Words.9cdce16e-2c41-4678-883e-3e3a13611573.002.png)
-
 
 - ####Cotizacion.Test
   - Contiene las pruebas unitarias para probar la funcionalidad tanto del proyecto Web Api como de la libraría de clase que suple los datos desde la base de datos. Este proyecto realiza las pruebas invocando los controladores del Web Api apoyandose el uno varios repositorios para obtener los datos.
