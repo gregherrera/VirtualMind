@@ -1,4 +1,4 @@
-﻿## A continuación detallo brevemente el trabajao realizado.
+## A continuación detallo brevemente el trabajao realizado.
 
 La solución lleva por nombre **“Cotizacion”.**
 
