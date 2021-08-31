@@ -18,11 +18,11 @@
             </div>
 
             <div class="form-group" style="margin-bottom: 1rem;">
-                <label for="coin">Coin</label>
+                <label for="coin">Coin Name</label>
                 <select class="form-select" id="coin" required [(ngModel)]="compra.idmoneda" name="coin"
                     #coin="ngModel">
-                    <option *ngFor="let coin of lista; let i = index" [ngValue]="coin.id">
-                        {{coin.id}}
+                    <option *ngFor="let coin of lista; let i = index" [ngValue]="coin.id" >
+                        {{coin.descripcion}}
                     </option>
                 </select>
 

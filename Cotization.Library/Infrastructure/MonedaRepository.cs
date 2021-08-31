@@ -8,7 +8,7 @@ namespace Cotization.Library.Infrastructure
 	{
 		public MonedaRepository(CotizacionContext context): base(context) { }
 
-		public async Task<Moneda> GetMonedaByIdAsync(string id)
+		public async Task<Moneda> GetMonedaByIdAsync(long id)
 		{
 			return await GetAll().FirstOrDefaultAsync(x => x.Id == id);
 		}

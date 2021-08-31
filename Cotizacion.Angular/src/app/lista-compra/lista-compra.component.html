@@ -17,7 +17,7 @@
     <thead>
       <tr>
         <th>User Id</th>
-        <th>Coin Id</th>
+        <th>Coin Name</th>
         <th>Purchase Date</th>
         <th>Rate</th>
         <th>Amount</th>
@@ -27,7 +27,7 @@
     <tbody>
       <tr *ngFor="let elemento of lista">
         <td>{{ elemento.idUsuario}}</td>
-        <td>{{ elemento.idMoneda }}</td>
+        <td>{{ elemento.monedaDescripcion }}</td>
         <td>{{ elemento.fecha }}</td>
         <td>{{ elemento.tasa }}</td>
         <td>{{ elemento.monto }}</td>

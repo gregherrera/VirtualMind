@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Cotization.Library.Domain
 {
-	public interface ILimiteRepository: IRepository<Limite>
+	public interface ILimiteRepository : IRepository<Limite>
 	{
 		Task<Limite> GetLimiteByIdAsync(long id);
 	}

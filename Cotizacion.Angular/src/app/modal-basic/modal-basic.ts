@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CompraInsert } from '../interface/comprainsert';
@@ -11,7 +11,7 @@ import { ApiMonedaService } from '../services/apimoneda.service';
     templateUrl: './modal-basic.html',
     styleUrls: ['./modal-basic.scss']
 })
-export class NgbdModalBasic {
+export class NgbdModalBasic implements OnInit {
     @Input() compra: CompraInsert = new CompraInsert();
     lista: any[] = [];
 
@@ -38,7 +38,7 @@ export class NgbdModalBasic {
         this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', keyboard: false, backdrop: 'static' }).result.then((result) => {
             this.apiCompra.Add(this.compra).subscribe(result => {
                 if (result.success === 1) {
-                    this.snackBar.open("Money exchange created successfully!", "", {
+                    this.snackBar.open("Money exchange realized successfully!", "", {
                         duration: 2000,
                         verticalPosition: 'top',
                         panelClass: ['mat-accent']
@@ -47,7 +47,7 @@ export class NgbdModalBasic {
                     this.listaCompra.getCompras();
 
                     this.compra.idusuario = 0;
-                    this.compra.idmoneda = "";
+                    this.compra.idmoneda = 1;
                     this.compra.monto = 0;
                 }
                 else {

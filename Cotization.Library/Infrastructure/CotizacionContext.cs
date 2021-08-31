@@ -1,5 +1,5 @@
-﻿using Cotization.Library.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Cotization.Library.Domain;
 using Microsoft.Extensions.Configuration;
 
 #nullable disable
@@ -16,21 +16,22 @@ namespace Cotization.Library.Infrastructure
             : base(options)
         {
         }
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			if (!optionsBuilder.IsConfigured)
-			{
+
+        public virtual DbSet<Compra> Compras { get; set; }
+        public virtual DbSet<Limite> Limites { get; set; }
+        public virtual DbSet<Moneda> Monedas { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
 				var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
 				var config = builder.Build();
 				var connectionString = config["ConnectionStrings:Exchange"];
 
 				optionsBuilder.UseSqlServer(connectionString);
 			}
-		}
-
-		public virtual DbSet<Compra> Compras { get; set; }
-        public virtual DbSet<Limite> Limites { get; set; }
-        public virtual DbSet<Moneda> Monedas { get; set; }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,10 +47,7 @@ namespace Cotization.Library.Infrastructure
 
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
-                entity.Property(e => e.IdMoneda)
-                    .IsRequired()
-                    .HasMaxLength(25)
-                    .HasColumnName("Id_Moneda");
+                entity.Property(e => e.IdMoneda).HasColumnName("Id_Moneda");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
 
@@ -62,7 +60,7 @@ namespace Cotization.Library.Infrastructure
                 entity.HasOne(d => d.Moneda)
                     .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.IdMoneda)
-                    .OnDelete(DeleteBehavior.NoAction)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Compras_Monedas");
             });
 
@@ -81,10 +79,7 @@ namespace Cotization.Library.Infrastructure
 
                 entity.Property(e => e.Anio).HasColumnName("anio");
 
-                entity.Property(e => e.IdMoneda)
-                    .IsRequired()
-                    .HasMaxLength(25)
-                    .HasColumnName("Id_Moneda");
+                entity.Property(e => e.IdMoneda).HasColumnName("Id_Moneda");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
 
@@ -99,7 +94,12 @@ namespace Cotization.Library.Infrastructure
 
             modelBuilder.Entity<Moneda>(entity =>
             {
-                entity.Property(e => e.Id).HasMaxLength(25);
+                entity.HasIndex(e => e.Descripcion, "UQ_Monedas")
+                    .IsUnique();
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Factor).HasColumnType("decimal(5, 2)");
 

@@ -12,5 +12,7 @@ namespace Cotization.Library.Domain
 		IQueryable<T> Find(Expression<Func<T, bool>> predicate);
 		Task Add(T entity);
 		Task AddRange(IEnumerable<T> entities);
+		Task Delete(T entity);
+		Task DeleteRange(IEnumerable<T> entities);
 	}
 }

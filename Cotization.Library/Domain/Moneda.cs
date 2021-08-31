@@ -13,7 +13,8 @@ namespace Cotization.Library.Domain
             Limites = new HashSet<Limite>();
         }
 
-        public string Id { get; set; }
+        public long Id { get; set; }
+		public string Descripcion { get; set; }
         public string Url { get; set; }
         public decimal Factor { get; set; }
 

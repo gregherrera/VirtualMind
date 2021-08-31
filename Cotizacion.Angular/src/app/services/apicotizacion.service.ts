@@ -3,18 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../interface/response';
 import { AppSettingsService } from './appsettings.service';
+import { Config } from '../interface/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCotizacionService {
   url: string = "";
+  config: Config | undefined;
 
-  constructor(private _http: HttpClient, private _setting: AppSettingsService) { }
+  constructor(private http: HttpClient, private appSetting: AppSettingsService) {
+  }
 
-  getCotizaciones(): Observable<Response> {
-    this._setting.getSettings().subscribe(data => { this.url = data.webApiHost + "api/cotizacion"; });
+  getCotizaciones(): Observable<Response> { 
+    this.config = this.appSetting.readConfig();
+    this.url = this.config.webApiHost + "api/cotizacion";
 
-    return this._http.get<Response>(this.url);
+    return this.http.get<Response>(this.url);
   }
 }

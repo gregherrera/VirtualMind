@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Config } from '../interface/config';
 import { ApiCotizacionService } from '../services/apicotizacion.service';
+import { AppSettingsService } from '../services/appsettings.service';
 
 @Component({
   selector: 'app-cotizaciones',
@@ -7,6 +9,7 @@ import { ApiCotizacionService } from '../services/apicotizacion.service';
 })
 export class CotizacionesComponent {
   public lista: any[] = [];
+  config: Config | undefined;
   cargar: boolean = false;
 
   constructor(private apiCotizacion: ApiCotizacionService) {

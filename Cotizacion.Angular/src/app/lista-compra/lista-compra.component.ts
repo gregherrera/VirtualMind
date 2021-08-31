@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiCompraService } from '../services/apicompra.service';
 
 @Component({
   selector: 'app-lista-compra',
   templateUrl: './lista-compra.component.html'
 })
-export class ListaCompraComponent {
+export class ListaCompraComponent implements OnInit {
   public lista: any[] = [];
   cargar: boolean = false;
 

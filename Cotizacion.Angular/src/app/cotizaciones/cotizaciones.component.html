@@ -13,13 +13,13 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="lista.length > 0">
   <thead>
     <tr>
-      <th>Coin Id</th>
+      <th>Coin Name</th>
       <th>Value</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let elemento of lista">
-      <td>{{ elemento.moneda }}</td>
+      <td>{{ elemento.descripcion }}</td>
       <td>{{ elemento.valor }}</td>
     </tr>
   </tbody>

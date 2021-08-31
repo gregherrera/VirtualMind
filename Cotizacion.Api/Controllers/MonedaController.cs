@@ -25,7 +25,7 @@ namespace Cotizacion.Api.Controllers
 
 			try
 			{
-				var monedas = monedaRepository.GetAll();				
+				var monedas = monedaRepository.GetAll();
 
 				if (await monedas.CountAsync() == 0)
 				{

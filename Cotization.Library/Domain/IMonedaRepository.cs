@@ -1,10 +1,9 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Cotization.Library.Domain
 {
-	public interface IMonedaRepository: IRepository<Moneda>
+	public interface IMonedaRepository : IRepository<Moneda>
 	{
-		Task<Moneda> GetMonedaByIdAsync(string id);
+		Task<Moneda> GetMonedaByIdAsync(long id);
 	}
 }

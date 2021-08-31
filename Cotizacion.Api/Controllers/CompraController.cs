@@ -28,13 +28,22 @@ namespace Cotizacion.Api.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<Compra>> GetCompras()
+		public async Task<ActionResult<CompraDto>> GetCompras()
 		{
 			MyResponse response = new MyResponse();
 
 			try
 			{	
-				var compras = await compraRepository.GetAll().OrderByDescending(c => c.Id).ToListAsync();
+				var compras = await compraRepository.GetAll().OrderByDescending(c => c.Id)
+					.Select(c => new CompraDto { Id = c.Id,
+												 IdUsuario = c.IdUsuario, 
+												 IdMoneda = c.IdMoneda, 
+												 Fecha = c.Fecha, 
+												 Tasa = c.Tasa, 
+												 Monto = c.Monto, 
+												 Valor = c.Valor, 
+												 MonedaDescripcion = c.Moneda.Descripcion })
+					.ToListAsync();
 
 				if (compras.Count == 0)
 				{
@@ -61,7 +70,7 @@ namespace Cotizacion.Api.Controllers
 
 			try
 			{
-				if (id.Equals(DBNull.Value))
+				if (id.Equals(DBNull.Value) || id <= 0)
 				{
 					response.Message = "You must provide a purchase id to proceed with the query.";
 					return BadRequest(response);
@@ -96,17 +105,17 @@ namespace Cotizacion.Api.Controllers
 
 			try
 			{
-				if (string.IsNullOrEmpty(request.IdMoneda))
+				if (request.IdMoneda.Equals(DBNull.Value) || request.IdMoneda <= 0)
 				{
 					response.Message = "You should provide a type of coin for this transaction.";
 					return BadRequest(response);
 				}
-				else if (request.IdUsuario.Equals(DBNull.Value))
+				else if (request.IdUsuario.Equals(DBNull.Value) || request.IdUsuario <= 0)
 				{
 					response.Message = "You should provide the use who is buying the coins.";
 					return BadRequest(response);
 				}
-				else if (request.Monto.Equals(DBNull.Value))
+				else if (request.Monto.Equals(DBNull.Value) || request.Monto <= 0 )
 				{
 					response.Message = "You should provide the amount to proceed with this transaction.";
 					return BadRequest(response);
@@ -123,7 +132,7 @@ namespace Cotizacion.Api.Controllers
 					else
 					{
 						var limit = await limiteRepository.GetAll().FirstOrDefaultAsync(
-										l => l.IdMoneda.ToLower().Equals(request.IdMoneda.ToLower()) &&
+										l => l.IdMoneda.Equals(request.IdMoneda) &&
 										l.IdUsuario == request.IdUsuario &&
 										l.Anio == DateTime.Now.Year &&
 										l.Mes == DateTime.Now.Month
@@ -136,7 +145,7 @@ namespace Cotizacion.Api.Controllers
 						}
 
 						var totalMonth = await compraRepository.GetAll().Where(
-											c => c.IdMoneda.ToLower().Equals(request.IdMoneda.ToLower()) &&
+											c => c.IdMoneda.Equals(request.IdMoneda) &&
 											c.IdUsuario == request.IdUsuario &&
 											c.Fecha.Year == DateTime.Now.Year &&
 											c.Fecha.Month == DateTime.Now.Month

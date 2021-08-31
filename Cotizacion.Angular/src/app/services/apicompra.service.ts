@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../interface/response';
@@ -15,21 +15,26 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ApiCompraService {
+export class ApiCompraService implements OnInit {
   url: string = "";
   config: Config | undefined;
 
-  constructor(private _http: HttpClient, private _setting: AppSettingsService) { }
+  constructor(private http: HttpClient, private appSetting: AppSettingsService) { }
+
+  ngOnInit(): void {
+  }
 
   getCompras(): Observable<Response> {
-    this._setting.getSettings().subscribe(data => { this.url = data.webApiHost + "api/compra"; });
+    this.config = this.appSetting.readConfig();
+    this.url = this.config.webApiHost + "api/compra";
 
-    return this._http.get<Response>(this.url);
+    return this.http.get<Response>(this.url);
   }
 
   Add(compra: CompraInsert): Observable<Response> {
-    this._setting.getSettings().subscribe(data => { this.url = data.webApiHost + "api/compra"; });
+    this.config = this.appSetting.readConfig();
+    this.url = this.config.webApiHost + "api/compra";
 
-    return this._http.post<Response>(this.url, compra, httpOptions);
+    return this.http.post<Response>(this.url, compra, httpOptions);
   }
 }

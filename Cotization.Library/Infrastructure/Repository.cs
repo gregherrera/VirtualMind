@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Cotization.Library.Infrastructure
@@ -35,9 +34,22 @@ namespace Cotization.Library.Infrastructure
 			await entities.AddAsync(entity);
 			await context.SaveChangesAsync();
 		}
+
 		public async Task AddRange(IEnumerable<T> entities)
 		{
 			await context.AddRangeAsync(entities);
+			await context.SaveChangesAsync();
+		}
+
+		public async Task Delete(T entity)
+		{
+			entities.Remove(entity);
+			await context.SaveChangesAsync();
+		}
+
+		public async Task DeleteRange(IEnumerable<T> entities)
+		{
+			context.RemoveRange(entities);
 			await context.SaveChangesAsync();
 		}
 	}

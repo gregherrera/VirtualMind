@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,11 @@ import { HomeComponent } from './home/home.component';
 import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
 import { NgbdModalBasic } from './modal-basic/modal-basic';
+import { AppSettingsService } from './services/appsettings.service';
+
+export const configFactory = (appService: AppSettingsService) => {
+  return () => appService.loadSettings();
+};
 
 @NgModule({
   declarations: [
@@ -33,7 +38,14 @@ import { NgbdModalBasic } from './modal-basic/modal-basic';
     NgbModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [ 
+    {      
+      provide: APP_INITIALIZER,
+      useFactory: configFactory,
+      deps: [AppSettingsService],
+      multi: true      
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

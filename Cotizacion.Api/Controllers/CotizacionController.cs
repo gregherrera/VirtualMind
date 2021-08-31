@@ -42,6 +42,7 @@ namespace Cotizacion.Api.Controllers
 
 							_cotizacion.Add(new Cotizacion() {
 								Moneda = coin.Id,
+								Descripcion = coin.Descripcion,
 								Valor = Convert.ToString(Convert.ToDecimal(cotizacionList[1]) * coin.Factor)
 							});							
 						}
@@ -61,13 +62,13 @@ namespace Cotizacion.Api.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<Moneda>> GetCotizacion(string id)
+		public async Task<ActionResult<Moneda>> GetCotizacion(long id)
 		{
 			MyResponse response = new MyResponse();
 
 			try
 			{
-				if (string.IsNullOrEmpty(id))
+				if (id.Equals(DBNull.Value) || id <= 0)
 				{
 					response.Message = "You must provide a type of coin to proceed with the quotation.";
 					return BadRequest(response);
@@ -92,6 +93,7 @@ namespace Cotizacion.Api.Controllers
 
 								Cotizacion _cotizacion = new Cotizacion();
 								_cotizacion.Moneda = id;
+								_cotizacion.Descripcion = coin.Descripcion;
 								_cotizacion.Valor = Convert.ToString(Convert.ToDecimal(cotizacionList[1]) * coin.Factor);
 
 								response.Data = _cotizacion;
@@ -113,7 +115,8 @@ namespace Cotizacion.Api.Controllers
 
 	public class Cotizacion
 	{
-		public string Moneda { get; set; }
+		public long Moneda { get; set; }
+		public string Descripcion { get; set; }
 		public string Valor { get; set; }
 	}
 }

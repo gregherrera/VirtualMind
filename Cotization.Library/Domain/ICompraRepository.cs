@@ -2,7 +2,7 @@
 
 namespace Cotization.Library.Domain
 {
-	public interface ICompraRepository: IRepository<Compra>
+	public interface ICompraRepository : IRepository<Compra>
 	{
 		Task<Compra> GetCompraByIdAsync(long id);
 	}

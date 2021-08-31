@@ -11,7 +11,7 @@ DELETE FROM [dbo].[Monedas]
 GO
 
 INSERT INTO [dbo].[Monedas]
-           ([Id]
+		   ([Descripcion]
            ,[Url]
            ,[Factor])
      VALUES
@@ -21,7 +21,7 @@ INSERT INTO [dbo].[Monedas]
 GO
 
 INSERT INTO [dbo].[Monedas]
-           ([Id]
+           ([Descripcion]
            ,[Url]
            ,[Factor])
      VALUES
@@ -37,7 +37,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('dolar'
+           (1
            ,1
            ,2021
            ,8
@@ -51,7 +51,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('real'
+           (2
            ,1
            ,2021
            ,8
@@ -65,7 +65,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('dolar'
+           (1
            ,2
            ,2021
            ,8
@@ -79,7 +79,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('real'
+           (2
            ,2
            ,2021
            ,8
@@ -93,7 +93,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('dolar'
+           (1
            ,1
            ,2021
            ,9
@@ -107,7 +107,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('real'
+           (2
            ,1
            ,2021
            ,9
@@ -121,7 +121,7 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('dolar'
+           (1
            ,2
            ,2021
            ,9
@@ -135,10 +135,9 @@ INSERT INTO [dbo].[Limites]
            ,[Mes]
            ,[Monto])
      VALUES
-           ('real'
+           (2
            ,2
            ,2021
            ,9
            ,300.00)
 GO
-

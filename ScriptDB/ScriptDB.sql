@@ -19,7 +19,7 @@ GO
 CREATE TABLE [dbo].[Compras](
 	[Id] [bigint] NOT NULL Identity(1,1),
 	[Id_Usuario] [bigint] NOT NULL,
-	[Id_Moneda] [nvarchar](25) NOT NULL,
+	[Id_Moneda] [bigint] NOT NULL,
 	[Fecha] [datetime] NOT NULL,
 	[Tasa] [decimal](12, 2) NOT NULL,
 	[Monto] [decimal](12, 2) NOT NULL,
@@ -47,7 +47,7 @@ GO
 
 CREATE TABLE [dbo].[Limites](
 	[Id] [bigint] NOT NULL Identity(1,1),
-	[Id_Moneda] [nvarchar](25) NOT NULL,
+	[Id_Moneda] [bigint] NOT NULL,
 	[Id_Usuario] [bigint] NOT NULL,
 	[anio] [int] NOT NULL,
 	[Mes] [int] NOT NULL,
@@ -80,13 +80,17 @@ END
 GO
 
 CREATE TABLE [dbo].[Monedas](
-	[Id] [nvarchar](25) NOT NULL,
+	[Id] [bigint] NOT NULL Identity(1,1),
+	[Descripcion] [nvarchar](50) NOT NULL,
 	[Url] [nvarchar](150) NOT NULL,
 	[Factor] [decimal](5, 2) NOT NULL
 ) ON [PRIMARY]
 GO
 
 Alter table [dbo].[Monedas] Add constraint PK_Monedas Primary Key(Id) 
+GO
+
+Alter table [dbo].[Monedas] Add constraint UQ_Monedas Unique(Descripcion) 
 GO
 
 Alter table [dbo].[Compras] Add constraint FK_Compras_Monedas Foreign Key(Id_moneda) References [dbo].[Monedas](Id) 
